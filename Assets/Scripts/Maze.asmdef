@@ -1,0 +1,8 @@
+{
+  "name": "Maze",
+  "rootNamespace": "Maze",
+  "references": [ 
+    "VContainer",
+    "Unity.TextMeshPro"
+  ]
+}

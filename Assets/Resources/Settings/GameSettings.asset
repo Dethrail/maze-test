@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74217fedea1e17240988efbb2e1eacdd, type: 3}
+  m_Name: GameSettings
+  m_EditorClassIdentifier: 
+  <PlayerPrefab>k__BackingField: {fileID: 5258869641867889643, guid: 6f02cdc6ccb305d4996f9f6220bf163a, type: 3}
+  <HudPrefab>k__BackingField: {fileID: 7478495137766208439, guid: 530ec44346c4a3f489e523a55cccce23, type: 3}
+  <Width>k__BackingField: 10
+  <Height>k__BackingField: 10
+  <MazeWall>k__BackingField: {fileID: 1735331045633605111, guid: a3a1c74320b56cd45a3c412f9f4d9ad8, type: 3}
+  <MazeFloor>k__BackingField: {fileID: 85944925333666803, guid: e111e2c5722fb7b4091afb19c78aa443, type: 3}
