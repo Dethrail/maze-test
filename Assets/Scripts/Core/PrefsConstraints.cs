@@ -1,10 +1,8 @@
 ﻿using JetBrains.Annotations;
 
-namespace Maze.Core
-{
+namespace Maze.Core {
     [UsedImplicitly]
-    public class PrefsConstraints
-    {
+    public class PrefsConstraints {
         public static string ALGORITHM = "ALGORITHM";
         public static string KRUSKAL = "KRUSKAL";
         public static string PRIMS = "PRIMS";

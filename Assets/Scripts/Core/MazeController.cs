@@ -9,11 +9,9 @@ using VContainer;
 using VContainer.Unity;
 using Object = UnityEngine.Object;
 
-namespace Maze.Core
-{
+namespace Maze.Core {
     [UsedImplicitly]
-    public class MazeController : IStartable, ITickable
-    {
+    public class MazeController : IStartable, ITickable {
         private readonly IObjectResolver _container;
         private readonly IGameSettings _gameSettings;
         private readonly IMazeGenerator _mazeGenerator;
@@ -34,8 +32,7 @@ namespace Maze.Core
             MazeRoot mazeRoot,
             Camera camera,
             RuntimeData runtimeData
-        )
-        {
+        ) {
             _container = container;
             _gameSettings = gameSettings;
             _mazeGenerator = mazeGenerator;
@@ -46,8 +43,7 @@ namespace Maze.Core
             _runtimeData.MazeController = this;
         }
 
-        public void Start()
-        {
+        public void Start() {
             var w = PlayerPrefs.GetInt(PrefsConstraints.WIDTH);
             var h = PlayerPrefs.GetInt(PrefsConstraints.HEIGHT);
 
@@ -74,10 +70,8 @@ namespace Maze.Core
             OnRender?.Invoke();
         }
 
-        private void RenderMaze(int[,] maze)
-        {
-            if (_tilemap != null)
-            {
+        private void RenderMaze(int[,] maze) {
+            if (_tilemap != null) {
                 Object.Destroy(_tilemap.gameObject);
             }
 
@@ -103,39 +97,32 @@ namespace Maze.Core
             _runtimeData.Width = width - 1;
             _runtimeData.Height = height - 1;
 
-            for (var x = 0; x < width; x++)
-            {
-                for (var y = 0; y < height; y++)
-                {
+            for (var x = 0; x < width; x++) {
+                for (var y = 0; y < height; y++) {
                     var tile = maze[x, y] == 1 ? _gameSettings.WallTile : _gameSettings.FloorTile;
                     _tilemap.SetTile(new Vector3Int(x, y, 0), tile);
                 }
             }
         }
 
-        public void Tick()
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
+        public void Tick() {
+            if (Input.GetMouseButtonDown(0)) {
                 var mouseWorldPos = _camera.ScreenToWorldPoint(Input.mousePosition);
                 var cellPos = _tilemap.WorldToCell(mouseWorldPos);
 
                 var clickedTile = _tilemap.GetTile(cellPos);
 
-                if (clickedTile != null)
-                {
+                if (clickedTile != null) {
                     OnTileClicked(cellPos, clickedTile);
                 }
             }
         }
 
-        private void OnTileClicked(Vector3Int cell, TileBase tile)
-        {
+        private void OnTileClicked(Vector3Int cell, TileBase tile) {
             Debug.Log($"Clicked tile at {cell} → {tile.name}");
         }
 
-        public bool TryAndMove(Vector2Int direction, out Vector2Int newPosition)
-        {
+        public bool TryAndMove(Vector2Int direction, out Vector2Int newPosition) {
             newPosition = _runtimeData.PlayerPosition;
 
             // cancel diagonal moves
@@ -144,8 +131,7 @@ namespace Maze.Core
                 return false;
             }
 
-            if (Mathf.Abs(direction.x) == Mathf.Abs(direction.y))
-            {
+            if (Mathf.Abs(direction.x) == Mathf.Abs(direction.y)) {
                 return false;
             }
 
@@ -158,8 +144,7 @@ namespace Maze.Core
                 return false;
 
             // Wall check
-            if (_maze[newPosition.x, newPosition.y] == 1)
-            {
+            if (_maze[newPosition.x, newPosition.y] == 1) {
                 return false;
             }
 

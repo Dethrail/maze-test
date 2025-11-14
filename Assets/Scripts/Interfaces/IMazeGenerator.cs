@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Maze.Interfaces
-{
-    public interface IMazeGenerator
-    {
+namespace Maze.Interfaces {
+    public interface IMazeGenerator {
         /// <summary>
         /// width and height will by multiplied by 2 and + 1, because it should contain walls and floors cells of maze
         /// </summary>

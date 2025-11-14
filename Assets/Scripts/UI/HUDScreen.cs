@@ -9,10 +9,8 @@ using UnityEngine.UI;
 using VContainer;
 using VContainer.Unity;
 
-namespace Maze.UI
-{
-    public class HUDScreen : MonoBehaviour, IDisposable
-    {
+namespace Maze.UI {
+    public class HUDScreen : MonoBehaviour, IDisposable {
         #region Inspector fields
 
         [SerializeField] private TMP_Text timeText;
@@ -37,51 +35,41 @@ namespace Maze.UI
             SceneLoader sceneLoader,
             IRuntimeData runtimeData,
             IGameStateService gameStateService
-        )
-        {
+        ) {
             _sceneLoader = sceneLoader;
             _runtimeData = runtimeData;
             _gameStateService = gameStateService;
         }
 
-        private void Start()
-        {
-            
+        private void Start() {
             backButton.onClick.AddListener(LoadMenuScene);
             restartButton.onClick.AddListener(RestartScene);
         }
 
-        public void Update()
-        {
-            if (_gameStateService.IsVictory)
-            {
+        public void Update() {
+            if (_gameStateService.IsVictory) {
                 return;
             }
 
-            if (timeText != null)
-            {
+            if (timeText != null) {
                 timeText.text = $"Time: {_runtimeData.TimeElapsed:F1}";
             }
 
 
-            if (distanceText != null)
-            {
+            if (distanceText != null) {
                 distanceText.text = $"Dist: {_runtimeData.Distance}";
             }
         }
 
-        private void LoadMenuScene()
-        {
+        private void LoadMenuScene() {
             _sceneLoader.Load("Menu");
         }
 
-        private void RestartScene()
-        {
+        private void RestartScene() {
             _sceneLoader.Load(SceneManager.GetActiveScene().name);
         }
 
-        public void Dispose()
-        {
+        public void Dispose() {
             backButton.onClick.RemoveListener(LoadMenuScene);
             restartButton.onClick.RemoveListener(RestartScene);
         }

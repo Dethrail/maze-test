@@ -4,8 +4,7 @@ using Maze.Interfaces;
 using UnityEngine;
 using VContainer.Unity;
 
-namespace Maze.Settings
-{
+namespace Maze.Settings {
     [UsedImplicitly]
     public class RuntimeData : IRuntimeData, ITickable // may be runtime data should not count time
     {
@@ -15,15 +14,12 @@ namespace Maze.Settings
         public MazeController MazeController { get; set; }
         public Vector2Int PlayerPosition { get; set; }
 
-        public bool IsPlayerOnBounds()
-        {
-            if (PlayerPosition.x == 0 || PlayerPosition.x == Width)
-            {
+        public bool IsPlayerOnBounds() {
+            if (PlayerPosition.x == 0 || PlayerPosition.x == Width) {
                 return true;
             }
 
-            if (PlayerPosition.y == 0 || PlayerPosition.y == Height)
-            {
+            if (PlayerPosition.y == 0 || PlayerPosition.y == Height) {
                 return true;
             }
 
@@ -32,8 +28,7 @@ namespace Maze.Settings
 
         public float TimeElapsed { get; private set; }
 
-        public void Tick()
-        {
+        public void Tick() {
             TimeElapsed += Time.deltaTime;
         }
     }

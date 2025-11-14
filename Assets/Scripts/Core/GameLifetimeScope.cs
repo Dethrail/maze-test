@@ -9,10 +9,8 @@ using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace Maze.Core
-{
-    public class GameLifetimeScope : LifetimeScope
-    {
+namespace Maze.Core {
+    public class GameLifetimeScope : LifetimeScope {
         [SerializeField] private int mazeWidth = 10;
         [SerializeField] private int mazeHeight = 10;
 
@@ -20,32 +18,27 @@ namespace Maze.Core
         [SerializeField] private MazeRoot mazeRoot;
         [SerializeField] private Camera mainCamera;
 
-        protected override void Configure(IContainerBuilder builder)
-        {
+        protected override void Configure(IContainerBuilder builder) {
             // load and bind game settings
             var gameSettings = (GameSettings)Resources.Load("Settings/GameSettings");
             builder.RegisterInstance(gameSettings).AsImplementedInterfaces();
 
             // Core services
             builder.Register<RuntimeData>(Lifetime.Singleton).AsSelf().AsImplementedInterfaces();
-            builder.Register<SaveService>(Lifetime.Singleton);
             builder.Register<GameStateService>(Lifetime.Singleton).AsSelf().AsImplementedInterfaces();
             builder.Register<SceneLoader>(Lifetime.Singleton);
 
             // Maze
             IMazeGenerator generator;
-            if (PlayerPrefs.GetString(PrefsConstraints.ALGORITHM) == PrefsConstraints.PRIMS)
-            {
+            if (PlayerPrefs.GetString(PrefsConstraints.ALGORITHM) == PrefsConstraints.PRIMS) {
                 generator = new PrimsMazeGenerator();
                 builder.RegisterInstance(generator);
             }
-            else if (PlayerPrefs.GetString(PrefsConstraints.ALGORITHM) == PrefsConstraints.KRUSKAL)
-            {
+            else if (PlayerPrefs.GetString(PrefsConstraints.ALGORITHM) == PrefsConstraints.KRUSKAL) {
                 generator = new KruskalMazeGenerator();
                 builder.RegisterInstance(generator);
             }
-            else
-            {
+            else {
                 throw new Exception("Meze generator isn't selected");
             }
 

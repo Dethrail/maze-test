@@ -7,10 +7,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using VContainer;
 
-namespace Maze
-{
-    public class VictoryScreen : MonoBehaviour
-    {
+namespace Maze {
+    public class VictoryScreen : MonoBehaviour {
         [SerializeField] private ParticleSystem victoryParticles;
         [SerializeField] private TMP_Text timeText;
 
@@ -27,30 +25,26 @@ namespace Maze
         private void Construct(
             SceneLoader sceneLoader,
             IRuntimeData runtimeData,
-            IGameStateService  gameStateService)
-        {
+            IGameStateService gameStateService) {
             _sceneLoader = sceneLoader;
             _runtimeData = runtimeData;
             _gameStateService = gameStateService;
         }
 
-        private void Start()
-        {
+        private void Start() {
             victoryParticles.Play();
             backButton.onClick.AddListener(LoadMenuScene);
             restartButton.onClick.AddListener(RestartScene);
-            
+
             timeText.text = $"Time: {_runtimeData.TimeElapsed}";
             distanceText.text = $"Dist: {_runtimeData.Distance}";
         }
 
-        private void LoadMenuScene()
-        {
+        private void LoadMenuScene() {
             _sceneLoader.Load("Menu");
         }
 
-        private void RestartScene()
-        {
+        private void RestartScene() {
             _sceneLoader.Load(SceneManager.GetActiveScene().name);
         }
     }

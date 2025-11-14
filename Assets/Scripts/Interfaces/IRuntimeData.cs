@@ -1,10 +1,8 @@
 ﻿using Maze.Core;
 using UnityEngine;
 
-namespace Maze.Interfaces
-{
-    public interface IRuntimeData
-    {
+namespace Maze.Interfaces {
+    public interface IRuntimeData {
         public int Height { get; }
         public int Width { get; }
         public int Distance { get; }
