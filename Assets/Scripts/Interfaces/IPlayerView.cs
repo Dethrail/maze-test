@@ -4,6 +4,7 @@ namespace Maze.Interfaces
 {
     public interface IPlayerView
     {
-        Vector2 Direction { get; set; }
+        void Rotation(Vector2 direction);
+        void UpdatePosition(Vector2Int position);
     }
 }

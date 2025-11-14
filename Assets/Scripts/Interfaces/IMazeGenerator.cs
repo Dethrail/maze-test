@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Maze.Interfaces
 {
@@ -11,5 +12,7 @@ namespace Maze.Interfaces
         /// <param name="height"></param>
         /// <returns>generated maze :) or cat</returns>
         int[,] GenerateMaze(int width, int height);
+
+        event Action OnGenerate;
     }
 }

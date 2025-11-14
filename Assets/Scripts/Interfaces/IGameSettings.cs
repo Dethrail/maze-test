@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Maze.Interfaces
 {
@@ -6,10 +7,9 @@ namespace Maze.Interfaces
     {
         public GameObject PlayerPrefab { get; }
         public GameObject HudPrefab { get; }
-
-        public int Width { get; }
-        public int Height { get; }
-        public GameObject MazeWall { get; }
-        public GameObject MazeFloor { get; }
+        public GameObject VictoryPrefab { get; }
+        
+        public TileBase WallTile { get; set; }
+        public TileBase FloorTile { get; set; }
     }
 }

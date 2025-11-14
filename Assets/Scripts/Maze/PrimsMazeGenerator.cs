@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Maze.Interfaces;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Maze.Maze
 {
+    // https://weblog.jamisbuck.org/2011/1/10/maze-generation-prim-s-algorithm
     public class PrimsMazeGenerator : IMazeGenerator
     {
         private int _width;
@@ -17,6 +20,13 @@ namespace Maze.Maze
             new(0, -1), // down
             new(-1, 0) // left
         };
+
+        public void CreateExits(Vector2Int playerStart, int count)
+        {
+            throw new NotImplementedException();
+        }
+
+        public event Action OnGenerate;
 
         /// <summary>
         /// width & height will by multiplied by 2 and + 1, because it should contain walls and floors ceil in o
@@ -69,8 +79,8 @@ namespace Maze.Maze
                     AddFrontier(cell, frontier);
                 }
             }
-
-
+            
+            OnGenerate?.Invoke();
             return _maze;
         }
 

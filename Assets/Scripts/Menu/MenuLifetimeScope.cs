@@ -1,11 +1,15 @@
+using Maze.Services;
 using VContainer;
 using VContainer.Unity;
 
-public class MenuLifetimeScope : LifetimeScope
+namespace Maze.Menu
 {
-    protected override void Configure(IContainerBuilder builder)
+    public class MenuLifetimeScope : LifetimeScope
     {
-        builder.Register<SceneLoader>(Lifetime.Singleton);
-        builder.Register<MenuUIController>(Lifetime.Singleton);
+        protected override void Configure(IContainerBuilder builder)
+        {
+            builder.Register<SceneLoader>(Lifetime.Singleton);
+            builder.Register<MenuUIController>(Lifetime.Singleton);
+        }
     }
 }

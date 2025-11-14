@@ -1,9 +1,12 @@
 using UnityEngine.SceneManagement;
 
-public class SceneLoader
+namespace Maze.Services
 {
-    public void Load(string sceneName)
+    public class SceneLoader
     {
-        SceneManager.LoadScene(sceneName);
+        public void Load(string sceneName)
+        {
+            SceneManager.LoadScene(sceneName);
+        }
     }
 }

@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PlayerPrefab>k__BackingField: {fileID: 5258869641867889643, guid: 6f02cdc6ccb305d4996f9f6220bf163a, type: 3}
   <HudPrefab>k__BackingField: {fileID: 7478495137766208439, guid: 530ec44346c4a3f489e523a55cccce23, type: 3}
-  <Width>k__BackingField: 10
-  <Height>k__BackingField: 10
+  <VictoryPrefab>k__BackingField: {fileID: 7014445659704108314, guid: beb398f489b7ab948a4ac7431e001412, type: 3}
   <MazeWall>k__BackingField: {fileID: 1735331045633605111, guid: a3a1c74320b56cd45a3c412f9f4d9ad8, type: 3}
   <MazeFloor>k__BackingField: {fileID: 85944925333666803, guid: e111e2c5722fb7b4091afb19c78aa443, type: 3}
+  <WallTile>k__BackingField: {fileID: 11400000, guid: 1b4b046f37da6c14686414dcde6b4bbf, type: 2}
+  <FloorTile>k__BackingField: {fileID: 11400000, guid: cf47c2dd2427c034cadbab09341fbf98, type: 2}

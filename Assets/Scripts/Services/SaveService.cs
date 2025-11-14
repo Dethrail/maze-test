@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public class SaveService
+namespace Maze.Services
 {
-    public void SaveResult(float time, float distance)
+    public class SaveService
     {
-        PlayerPrefs.SetFloat("LastTime", time);
-        PlayerPrefs.SetFloat("LastDistance", distance);
-        PlayerPrefs.Save();
+        public void SaveResult(float time, float distance)
+        {
+            PlayerPrefs.SetFloat("LastTime", time);
+            PlayerPrefs.SetFloat("LastDistance", distance);
+            PlayerPrefs.Save();
+        }
     }
 }

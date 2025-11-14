@@ -1,10 +1,30 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
-
-public class PlayerInput
+namespace Maze.Player
 {
-    public Vector2 ReadMovement()
+    [UsedImplicitly]
+    public class PlayerInput
     {
-        return new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        private float _inputCooldown = 0.2f;
+        private float _lastInputTime = 0f;
+
+        public Vector2Int ReadRawInput()
+        {
+            if (Time.time - _lastInputTime < _inputCooldown)
+            {
+                return Vector2Int.zero;
+            }
+
+            var dir = new Vector2Int((int)Input.GetAxisRaw("Horizontal"), (int)Input.GetAxisRaw("Vertical"));
+
+            // Only update last input time if there was input
+            if (dir != Vector2Int.zero)
+            {
+                _lastInputTime = Time.time;
+            }
+
+            return dir;
+        }
     }
 }
