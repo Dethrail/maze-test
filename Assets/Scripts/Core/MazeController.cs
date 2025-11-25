@@ -5,14 +5,13 @@ using Maze.Player;
 using Maze.Settings;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using VContainer;
 using VContainer.Unity;
 using Object = UnityEngine.Object;
 
 namespace Maze.Core {
     [UsedImplicitly]
     public class MazeController : IStartable, ITickable {
-        private readonly IObjectResolver _container;
+        private readonly IPlayerFactory _playerFactory;
         private readonly IGameSettings _gameSettings;
         private readonly IMazeGenerator _mazeGenerator;
         private readonly GameCanvas _gameCanvas;
@@ -25,7 +24,7 @@ namespace Maze.Core {
 
 
         public MazeController(
-            IObjectResolver container,
+            IPlayerFactory playerFactory,
             IGameSettings gameSettings,
             IMazeGenerator mazeGenerator,
             GameCanvas gameCanvas,
@@ -33,7 +32,7 @@ namespace Maze.Core {
             Camera camera,
             RuntimeData runtimeData
         ) {
-            _container = container;
+            _playerFactory = playerFactory;
             _gameSettings = gameSettings;
             _mazeGenerator = mazeGenerator;
             _gameCanvas = gameCanvas;
@@ -59,12 +58,10 @@ namespace Maze.Core {
 
             _maze.CreateExits(playerStart, exitsCount);
 
-            var player = _container.Instantiate(_gameSettings.PlayerPrefab,
-                new Vector3(playerStart.x, playerStart.y), Quaternion.identity);
-
-            var playerView = player.GetComponent<PlayerView>();
-            _container.Inject(playerView);
-            _container.Resolve<PlayerController>().SetPlayerView(playerView); // injection hack :)
+            var playerView = _playerFactory.CreatePlayer(new Vector3(playerStart.x, playerStart.y));
+            if (playerView == null) {
+                Debug.LogError("Failed to create player");
+            }
 
             RenderMaze(_maze);
             OnRender?.Invoke();

@@ -47,6 +47,11 @@ namespace Maze.UI {
         }
 
         public void Update() {
+            // Guard against injection not completed yet
+            if (_gameStateService == null || _runtimeData == null) {
+                return;
+            }
+
             if (_gameStateService.IsVictory) {
                 return;
             }

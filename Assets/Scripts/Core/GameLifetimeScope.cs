@@ -1,4 +1,5 @@
 using System;
+using Maze.Factories;
 using Maze.Interfaces;
 using Maze.Maze;
 using Maze.Player;
@@ -49,6 +50,10 @@ namespace Maze.Core {
             // Player
             builder.Register<PlayerInput>(Lifetime.Singleton);
             builder.Register<PlayerController>(Lifetime.Singleton).AsSelf().AsImplementedInterfaces();
+
+            // Factories
+            builder.Register<PlayerFactory>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.Register<UIFactory>(Lifetime.Singleton).AsImplementedInterfaces();
 
             builder.RegisterEntryPoint<MazeController>(Lifetime.Singleton);
             builder.RegisterEntryPoint<UiService>(Lifetime.Singleton);
